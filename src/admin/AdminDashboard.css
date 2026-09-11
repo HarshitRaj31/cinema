@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.admin-page {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+
+  color: #f3ead9;
+  background: #0b0708;
+
+  font-family: "Inter", sans-serif;
+}
+
+.admin-page button {
+  font-family: inherit;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.admin-hero {
+  min-height: 42vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse 65% 80% at 50% 40%,
+      rgba(230, 54, 47, 0.2),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #060404,
+      #0b0708
+    );
+}
+
+.admin-hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  top: -350px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(209, 163, 80, 0.08);
+
+  filter: blur(100px);
+}
+
+.admin-hero p {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 18px;
+
+  color: #d1a350;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 5px;
+}
+
+.admin-hero h1 {
+  position: relative;
+  z-index: 2;
+
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: clamp(55px, 8vw, 90px);
+  font-weight: 400;
+
+  letter-spacing: 3px;
+}
+
+.admin-hero span {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 15px;
+
+  color: #98857c;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.admin-section {
+  min-height: 58vh;
+
+  padding: 80px 6% 110px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0b0708,
+      #150c0d
+    );
+}
+
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.admin-grid {
+  width: min(1100px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+.admin-card {
+  min-height: 180px;
+
+  padding: 28px;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.09);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 245, 230, 0.06),
+      rgba(255, 245, 230, 0.015)
+    );
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35);
+
+  transition: 0.35s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(209, 163, 80, 0.45);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(209, 163, 80, 0.06);
+}
+
+.admin-card span {
+  display: flex;
+
+  width: 55px;
+  height: 55px;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  border: 1px solid
+    rgba(209, 163, 80, 0.25);
+
+  border-radius: 7px;
+
+  background:
+    rgba(209, 163, 80, 0.07);
+
+  font-size: 25px;
+}
+
+.admin-card p {
+  margin-bottom: 5px;
+
+  color: #98857c;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.admin-card h2 {
+  color: #d1a350;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: 42px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.admin-actions {
+  width: min(1100px, 100%);
+
+  margin: 55px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.admin-actions a {
+  display: block;
+
+  text-decoration: none;
+}
+
+.admin-actions button {
+  width: 100%;
+
+  padding: 16px 20px;
+
+  border: 1px solid
+    rgba(209, 163, 80, 0.5);
+
+  border-radius: 4px;
+
+  color: #d1a350;
+
+  background:
+    rgba(209, 163, 80, 0.05);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+}
+
+.admin-actions button:hover {
+  color: #0b0708;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d1a350,
+      #b88638
+    );
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(209, 163, 80, 0.2);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .admin-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .admin-actions {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .admin-hero {
+    min-height: 38vh;
+
+    padding: 40px 20px;
+  }
+
+  .admin-hero h1 {
+    font-size: 55px;
+  }
+
+  .admin-section {
+    padding: 60px 15px 90px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-card {
+    min-height: 160px;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr;
+  }
+
+}

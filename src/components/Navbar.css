@@ -1,0 +1,92 @@
+.navbar {
+  width: 100%;
+  height: 72px;
+  padding: 0 7%;
+  background: #0b0708;
+  border-bottom: 1px solid rgba(209, 163, 80, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  color: #e6362f;
+  text-decoration: none;
+
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navbar-links a {
+  color: #f3ead9;
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #d1a350;
+}
+
+.navbar-logout {
+  border: 1px solid #e6362f;
+  background: transparent;
+  color: #f3ead9;
+
+  padding: 9px 17px;
+  border-radius: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar-logout:hover {
+  background: #e6362f;
+  color: white;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: auto;
+    padding: 18px 5%;
+
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .navbar-logo {
+    font-size: 28px;
+  }
+
+}

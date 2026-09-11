@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.theater-page {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  color: #f3ead9;
+  background: #0b0708;
+  font-family: "Inter", sans-serif;
+}
+
+.theater-page button {
+  font-family: inherit;
+}
+
+/* HERO */
+
+.theater-hero {
+  min-height: 45vh;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse 65% 80% at 50% 40%,
+      rgba(230, 54, 47, 0.2),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #060404,
+      #0b0708
+    );
+}
+
+.theater-hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  top: -350px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(209, 163, 80, 0.08);
+
+  filter: blur(100px);
+}
+
+.theater-hero p {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 20px;
+
+  color: #d1a350;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 5px;
+}
+
+.theater-hero h1 {
+  position: relative;
+  z-index: 2;
+
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: clamp(55px, 8vw, 90px);
+  font-weight: 400;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.theater-hero span {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 16px;
+
+  color: #98857c;
+
+  font-size: 14px;
+}
+
+/* SECTION */
+
+.theater-section {
+  min-height: 55vh;
+
+  padding: 90px 6% 120px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0b0708,
+      #150c0d
+    );
+}
+
+.heading {
+  width: min(1200px, 100%);
+  margin: 0 auto 55px;
+
+  text-align: center;
+}
+
+.heading p {
+  margin-bottom: 14px;
+
+  color: #d1a350;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 5px;
+}
+
+.heading h2 {
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+/* GRID */
+
+.grid {
+  width: min(1200px, 100%);
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+/* CARD */
+
+.theater-card {
+  position: relative;
+
+  padding: 30px;
+
+  border: 1px solid rgba(243, 234, 217, 0.09);
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 245, 230, 0.06),
+      rgba(255, 245, 230, 0.015)
+    );
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.theater-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(209, 163, 80, 0.45);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(209, 163, 80, 0.06);
+}
+
+.theater-card.selected {
+  border-color: #d1a350;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(209, 163, 80, 0.15),
+      rgba(209, 163, 80, 0.035)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(209, 163, 80, 0.1);
+}
+
+/* ICON */
+
+.icon {
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(209, 163, 80, 0.2);
+  border-radius: 8px;
+
+  background:
+    rgba(209, 163, 80, 0.06);
+
+  font-size: 30px;
+
+  transition: 0.35s ease;
+}
+
+.theater-card:hover .icon,
+.theater-card.selected .icon {
+  transform: scale(1.05);
+
+  border-color: rgba(209, 163, 80, 0.5);
+
+  background:
+    rgba(209, 163, 80, 0.12);
+}
+
+/* INFO */
+
+.info h3 {
+  margin-bottom: 15px;
+
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: 29px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+.info p {
+  margin-top: 10px;
+
+  color: #98857c;
+
+  font-size: 12px;
+}
+
+.info p:last-child {
+  color: #d1a350;
+
+  font-weight: 700;
+}
+
+/* CONTINUE */
+
+.continue {
+  width: min(600px, 100%);
+
+  margin: 55px auto 0;
+
+  text-align: center;
+}
+
+.continue a {
+  display: block;
+}
+
+.continue button {
+  width: 100%;
+
+  padding: 16px 25px;
+
+  border: 1px solid #d1a350;
+  border-radius: 4px;
+
+  color: #0b0708;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d1a350,
+      #b88638
+    );
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+}
+
+.continue button:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 45px rgba(209, 163, 80, 0.25);
+}
+
+.continue button:disabled {
+  color: #665950;
+
+  border-color: rgba(243, 234, 217, 0.1);
+
+  background: rgba(255, 245, 230, 0.04);
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+
+  transform: none;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .theater-hero {
+    min-height: 38vh;
+    padding: 40px 20px;
+  }
+
+  .theater-hero h1 {
+    font-size: 55px;
+  }
+
+  .theater-section {
+    padding: 70px 15px 90px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theater-card {
+    padding: 25px;
+  }
+
+  .heading h2 {
+    font-size: 42px;
+  }
+}

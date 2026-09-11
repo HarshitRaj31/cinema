@@ -1,0 +1,737 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.manage-seats {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+
+  color: #f3ead9;
+  background: #0b0708;
+
+  font-family: "Inter", sans-serif;
+}
+
+.manage-seats button,
+.manage-seats select {
+  font-family: inherit;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.manage-hero {
+  min-height: 40vh;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse 65% 80% at 50% 40%,
+      rgba(230, 54, 47, 0.2),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #060404,
+      #0b0708
+    );
+}
+
+.manage-hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  top: -350px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(209, 163, 80, 0.08);
+
+  filter: blur(100px);
+}
+
+.manage-hero p {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 18px;
+
+  color: #d1a350;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 5px;
+}
+
+.manage-hero h1 {
+  position: relative;
+  z-index: 2;
+
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: clamp(55px, 8vw, 90px);
+
+  font-weight: 400;
+
+  letter-spacing: 3px;
+}
+
+.manage-hero span {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 15px;
+
+  color: #98857c;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   MAIN SECTION
+========================= */
+
+.manage-section {
+  min-height: 60vh;
+
+  padding: 80px 6% 120px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0b0708,
+      #150c0d
+    );
+}
+
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.section-heading p {
+  margin-bottom: 10px;
+
+  color: #d1a350;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 4px;
+}
+
+.section-heading h2 {
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: 45px;
+
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   THEATRE SELECT
+========================= */
+
+.seat-control {
+  width: min(1100px, 100%);
+
+  margin: 0 auto 45px;
+
+  padding: 35px;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.09);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 245, 230, 0.06),
+      rgba(255, 245, 230, 0.015)
+    );
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.seat-control select {
+  width: 100%;
+
+  padding: 15px;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.1);
+
+  border-radius: 4px;
+
+  outline: none;
+
+  color: #f3ead9;
+
+  background: #120a0b;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.seat-control select:focus {
+  border-color: #d1a350;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(209, 163, 80, 0.06);
+}
+
+.seat-control select option {
+  color: #f3ead9;
+
+  background: #150c0d;
+}
+
+
+/* =========================
+   SEAT MANAGEMENT CARD
+========================= */
+
+.seat-management-card {
+  width: min(1000px, 100%);
+
+  margin: auto;
+
+  padding: 40px;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.09);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 245, 230, 0.06),
+      rgba(255, 245, 230, 0.015)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================
+   SEAT HEADER
+========================= */
+
+.seat-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 45px;
+}
+
+.seat-header p {
+  margin-bottom: 8px;
+
+  color: #d1a350;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 4px;
+}
+
+.seat-header h2 {
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   BLOCKED COUNT
+========================= */
+
+.seat-count {
+  min-width: 150px;
+
+  padding: 15px 20px;
+
+  text-align: center;
+
+  border: 1px solid
+    rgba(209, 163, 80, 0.2);
+
+  border-radius: 5px;
+
+  background:
+    rgba(209, 163, 80, 0.05);
+}
+
+.seat-count span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #98857c;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.seat-count strong {
+  color: #d1a350;
+
+  font-size: 25px;
+}
+
+
+/* =========================
+   SCREEN
+========================= */
+
+.screen {
+  width: 75%;
+
+  height: 38px;
+
+  margin: 0 auto 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-top: 3px solid #d1a350;
+
+  border-radius: 50% 50% 0 0;
+
+  color: #98857c;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(209, 163, 80, 0.12),
+      transparent
+    );
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 5px;
+
+  box-shadow:
+    0 -10px 35px
+    rgba(209, 163, 80, 0.08);
+}
+
+
+/* =========================
+   SEAT LAYOUT
+========================= */
+
+.seat-layout {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 40px;
+}
+
+.seat-row {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 14px;
+}
+
+
+/* =========================
+   SEAT BUTTON
+========================= */
+
+.seat {
+  width: 58px;
+
+  height: 48px;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.12);
+
+  border-radius: 6px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* AVAILABLE */
+
+.seat.available {
+  color: #f3ead9;
+
+  background:
+    rgba(255, 245, 230, 0.05);
+
+  border-color:
+    rgba(243, 234, 217, 0.15);
+}
+
+.seat.available:hover {
+  transform: translateY(-4px);
+
+  color: #0b0708;
+
+  border-color: #d1a350;
+
+  background: #d1a350;
+
+  box-shadow:
+    0 10px 25px
+    rgba(209, 163, 80, 0.2);
+}
+
+
+/* BLOCKED */
+
+.seat.blocked {
+  color: #f3ead9;
+
+  border-color:
+    rgba(190, 55, 45, 0.6);
+
+  background:
+    rgba(150, 30, 25, 0.25);
+
+  box-shadow:
+    inset 0 0 15px
+    rgba(150, 30, 25, 0.1);
+}
+
+.seat.blocked:hover {
+  transform: translateY(-3px);
+
+  background:
+    rgba(180, 40, 35, 0.4);
+}
+
+
+/* =========================
+   LEGEND
+========================= */
+
+.seat-legend {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 35px;
+
+  margin-bottom: 35px;
+
+  color: #98857c;
+
+  font-size: 11px;
+}
+
+.seat-legend div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.legend-box {
+  width: 18px;
+
+  height: 18px;
+
+  display: inline-block;
+
+  border-radius: 4px;
+}
+
+.available-box {
+  border: 1px solid
+    rgba(243, 234, 217, 0.15);
+
+  background:
+    rgba(255, 245, 230, 0.05);
+}
+
+.blocked-box {
+  border: 1px solid
+    rgba(190, 55, 45, 0.6);
+
+  background:
+    rgba(150, 30, 25, 0.3);
+}
+
+
+/* =========================
+   RESET BUTTON
+========================= */
+
+.reset-seats {
+  display: block;
+
+  margin: auto;
+
+  padding: 13px 25px;
+
+  border: 1px solid
+    rgba(220, 70, 60, 0.4);
+
+  border-radius: 4px;
+
+  color: #dba8a2;
+
+  background:
+    rgba(150, 30, 25, 0.08);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.reset-seats:hover {
+  color: #fff;
+
+  border-color:
+    rgba(220, 70, 60, 0.8);
+
+  background:
+    rgba(180, 40, 35, 0.2);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   SELECT MESSAGE
+========================= */
+
+.select-message {
+  width: min(700px, 100%);
+
+  margin: 60px auto 0;
+
+  padding: 70px 30px;
+
+  text-align: center;
+
+  border: 1px solid
+    rgba(243, 234, 217, 0.08);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 245, 230, 0.025);
+}
+
+.select-message div {
+  margin-bottom: 20px;
+
+  font-size: 55px;
+}
+
+.select-message h2 {
+  margin-bottom: 10px;
+
+  color: #f3ead9;
+
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+.select-message p {
+  color: #98857c;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 700px) {
+
+  .seat-management-card {
+    padding: 30px 20px;
+  }
+
+  .seat-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .seat-count {
+    width: 100%;
+  }
+
+  .screen {
+    width: 90%;
+  }
+
+  .seat-row {
+    gap: 8px;
+  }
+
+  .seat {
+    width: 48px;
+
+    height: 42px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+  .manage-hero {
+    min-height: 38vh;
+
+    padding: 40px 20px;
+  }
+
+  .manage-hero h1 {
+    font-size: 55px;
+  }
+
+  .manage-section {
+    padding: 60px 15px 90px;
+  }
+
+  .seat-control {
+    padding: 25px;
+  }
+
+  .seat-management-card {
+    padding: 25px 12px;
+  }
+
+  .seat-header h2 {
+    font-size: 35px;
+  }
+
+  .screen {
+    width: 95%;
+
+    margin-bottom: 40px;
+
+    letter-spacing: 3px;
+  }
+
+  .seat-layout {
+    gap: 9px;
+  }
+
+  .seat-row {
+    gap: 5px;
+  }
+
+  .seat {
+    width: 43px;
+
+    height: 38px;
+
+    font-size: 9px;
+  }
+
+  .seat-legend {
+    gap: 18px;
+
+    font-size: 10px;
+  }
+
+}

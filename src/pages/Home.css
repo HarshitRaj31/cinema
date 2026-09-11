@@ -1,0 +1,732 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,600;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Theater palette */
+  --bg: #0b0708;
+  --bg-alt: #150c0d;
+  --bg-deep: #060404;
+
+  --marquee: #e6362f;
+  --marquee-deep: #a11f1f;
+  --marquee-glow: rgba(230, 54, 47, 0.28);
+
+  --brass: #d1a350;
+  --brass-dim: #8a6a35;
+
+  --cream: #f3ead9;
+  --text-dim: #c9b8ac;
+  --text-dimmer: #98857c;
+  --text-mutest: #6b5952;
+
+  /* Shared gradients / shadows */
+  --marquee-grad: linear-gradient(135deg, var(--marquee), var(--marquee-deep));
+  --glass-bg: linear-gradient(145deg, rgba(255, 245, 230, 0.06), rgba(255, 245, 230, 0.015));
+  --card-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(230, 54, 47, 0.12);
+  --marquee-glow-btn: 0 12px 40px rgba(230, 54, 47, 0.35);
+
+  --border-soft: rgba(243, 234, 217, 0.08);
+  --border-brass: rgba(209, 163, 80, 0.3);
+}
+
+/* Film grain — cheap, single overlay, no perf cost per element */
+.home {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  color: var(--cream);
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+}
+
+.home::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.home a {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Sprocket-hole strip — the signature motif, used as a divider */
+.film-strip {
+  height: 16px;
+  background-color: var(--brass-dim);
+  background-image: radial-gradient(circle at center, var(--bg) 4px, transparent 4.5px);
+  background-size: 22px 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.85;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 35%, var(--marquee-glow), transparent 70%),
+    radial-gradient(circle at 85% 85%, rgba(209, 163, 80, 0.08), transparent 40%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
+}
+
+.hero::before {
+  /* spotlight cone sweeping from top, like a projector beam */
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 235, 200, 0.05), transparent 55%);
+  filter: blur(20px);
+  animation: beamPulse 6s ease-in-out infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(950px, 90%);
+  padding: 40px 20px;
+  animation: heroAppear 1.2s ease;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 10px 22px;
+  border: 1px solid var(--border-brass);
+  border-radius: 3px;
+  color: var(--brass);
+  background: rgba(209, 163, 80, 0.06);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
+.hero-content h1 {
+  margin-bottom: 22px;
+  font-family: "Bebas Neue", "Inter", sans-serif;
+  font-size: clamp(56px, 9vw, 118px);
+  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content h1 span {
+  display: block;
+  margin-top: 6px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.62em;
+
+  background: linear-gradient(90deg, var(--cream) 0%, #ff8b73 45%, var(--marquee) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  margin: auto;
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.hero-buttons a {
+  display: inline-block;
+}
+
+.hero-buttons button {
+  min-width: 190px;
+  padding: 17px 34px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+/* Ticket-stub primary CTA: notched left/right like a torn stub */
+.hero-buttons a:first-child button {
+  position: relative;
+  color: var(--bg-deep);
+  border: none;
+  border-radius: 4px;
+  background: var(--brass);
+  box-shadow: var(--marquee-glow-btn), inset 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.hero-buttons a:first-child button::before,
+.hero-buttons a:first-child button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  transform: translateY(-50%);
+}
+
+.hero-buttons a:first-child button::before {
+  left: -8px;
+}
+
+.hero-buttons a:first-child button::after {
+  right: -8px;
+}
+
+.hero-buttons a:first-child button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(230, 54, 47, 0.3), inset 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.hero-buttons a:last-child button {
+  color: var(--cream);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  background: transparent;
+}
+
+.hero-buttons a:last-child button:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+  transform: translateY(-4px);
+}
+
+.scroll {
+  margin-top: 80px;
+}
+
+.scroll p {
+  margin-bottom: 10px;
+  color: var(--text-mutest);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.scroll span {
+  display: inline-block;
+  color: var(--marquee);
+  font-size: 22px;
+  animation: scrollMove 1.7s infinite;
+}
+
+/* ---------- NOW SHOWING (movie grid) ---------- */
+
+.second {
+  position: relative;
+  padding: 130px 6% 120px;
+  background: linear-gradient(180deg, var(--bg), var(--bg-alt));
+}
+
+.hero2 {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.hero2 p,
+.hero3 p {
+  margin-bottom: 14px;
+  color: var(--brass);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.hero2 h2,
+.hero3 h3 {
+  margin-bottom: 14px;
+  font-family: "Bebas Neue", "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: clamp(38px, 5.5vw, 64px);
+  text-transform: uppercase;
+}
+
+.hero2 span {
+  color: var(--text-dimmer);
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
+
+.movie-container {
+  width: min(1400px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+
+.movie-card {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+
+  background: var(--glass-bg);
+  box-shadow: var(--card-shadow);
+
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--border-brass);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 68px;
+
+  background:
+    radial-gradient(circle at 50% 25%, rgba(230, 54, 47, 0.18), transparent 50%),
+    linear-gradient(150deg, #241615, #0e0908);
+
+  transition: transform 0.5s ease;
+}
+
+.movie-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(6, 4, 4, 0.85));
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.03);
+}
+
+.movie-body {
+  padding: 18px 16px 20px;
+}
+
+.movie-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.movie-card p {
+  margin-top: 7px;
+  color: var(--text-dimmer);
+  font-size: 12px;
+}
+
+.movie-rating {
+  color: var(--brass);
+  font-weight: 700;
+}
+
+.movie-card a {
+  display: block;
+}
+
+.movie-card button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+
+  border: 1px solid var(--border-brass);
+  border-radius: 4px;
+
+  color: var(--brass);
+  background: transparent;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.movie-card button:hover {
+  color: var(--bg-deep);
+  border-color: var(--brass);
+  background: var(--brass);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.btn button {
+  padding: 15px 34px;
+
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+
+  color: var(--cream);
+  background: transparent;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: 0.35s ease;
+}
+
+.btn button:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+  transform: translateY(-3px);
+}
+
+/* ---------- WHY US ---------- */
+
+.why-info {
+  padding: 130px 6%;
+  background: var(--bg-alt);
+}
+
+.hero3 {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.cards-container {
+  width: min(1200px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cards {
+  position: relative;
+  padding: 40px 26px;
+  text-align: center;
+
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  background: var(--glass-bg);
+
+  transition: 0.4s ease;
+}
+
+.cards:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-brass);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-brass);
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(230, 54, 47, 0.12), transparent);
+
+  font-size: 27px;
+  transition: 0.4s ease;
+}
+
+.cards:hover .card {
+  transform: scale(1.08);
+  border-color: var(--brass);
+}
+
+.cards h3 {
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.cards p {
+  color: var(--text-dimmer);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ---------- BOOK NOW ---------- */
+
+.hero4 {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 20px;
+  text-align: center;
+  background: var(--bg-deep);
+}
+
+.hero4::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--marquee-glow);
+  filter: blur(120px);
+}
+
+.next-layout {
+  position: relative;
+  z-index: 2;
+}
+
+.next-layout p {
+  margin-bottom: 16px;
+  color: var(--brass);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.next-layout h3 {
+  margin-bottom: 38px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(38px, 6vw, 66px);
+  letter-spacing: -1px;
+}
+
+.book-btn a {
+  display: inline-block;
+}
+
+.book-btn button {
+  position: relative;
+  padding: 17px 42px;
+
+  border: none;
+  border-radius: 4px;
+
+  color: #fff;
+  background: var(--marquee-grad);
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(230, 54, 47, 0.35);
+  transition: 0.35s ease;
+}
+
+.book-btn button::before,
+.book-btn button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  transform: translateY(-50%);
+}
+
+.book-btn button::before {
+  left: -8px;
+}
+
+.book-btn button::after {
+  right: -8px;
+}
+
+.book-btn button:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 55px rgba(230, 54, 47, 0.5);
+}
+
+/* ---------- MOTION ---------- */
+
+@keyframes heroAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes beamPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollMove {
+  0% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(9px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero::before,
+  .scroll span {
+    animation: none !important;
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1100px) {
+  .movie-container,
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 90vh;
+  }
+
+  .hero-content {
+    width: 94%;
+  }
+
+  .hero-content h1 {
+    font-size: 52px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero-buttons button {
+    width: 220px;
+  }
+
+  .scroll {
+    margin-top: 55px;
+  }
+
+  .second,
+  .why-info {
+    padding: 90px 5%;
+  }
+
+  .movie-container,
+  .cards-container {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .hero4 {
+    padding: 105px 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    padding: 8px 16px;
+  }
+
+  .hero2 h2,
+  .hero3 h3 {
+    font-size: 30px;
+  }
+
+  .next-layout h3 {
+    font-size: 34px;
+  }
+}
