@@ -47,7 +47,7 @@ function App() {
           <Route path="/admin/theatres"element={<ManageTheatres />}/>
           <Route path="/admin/shows"element={<ManageShows />}/>
           <Route path="/admin/seats"element={<ManageSeats />}/>
-          <Route path='/adlogin' element={<AdminLogin/>}/>
+          <Route path='/admin-login' element={<AdminLogin/>}/>
           <Route path='/navbar' element={<Navbar/>}/>
 
       </Routes>
