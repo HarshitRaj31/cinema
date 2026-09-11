@@ -418,7 +418,9 @@ const ManageMovies = () => {
           </div>
 
         </div>
-
+ <Link to='/movies'>
+        <button className="add-movie-btn">Return To Home</button>
+      </Link>
       </section>
 
     </div>
