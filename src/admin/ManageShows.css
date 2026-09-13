@@ -1001,3 +1001,42 @@
   }
 
 }
+.show-action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.edit-show-btn,
+.cancel-edit-btn {
+  border: 1px solid #d1a350;
+  background: transparent;
+  color: #d1a350;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.edit-show-btn:hover,
+.cancel-edit-btn:hover {
+  background: #d1a350;
+  color: #0b0708;
+}
+
+.cancel-edit-btn {
+  border-color: #e6362f;
+  color: #e6362f;
+}
+
+.cancel-edit-btn:hover {
+  background: #e6362f;
+  color: white;
+}
+
+.show-edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}

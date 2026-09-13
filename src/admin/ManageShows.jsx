@@ -337,7 +337,7 @@ const ManageShows = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
-
+  const [editingId, setEditingId] = useState(null);
 
   // =========================
   // SAVE SHOWS
@@ -406,7 +406,80 @@ const ManageShows = () => {
 
   };
 
+// =========================
+// EDIT SHOW
+// =========================
 
+const editShow = (show) => {
+  setEditingId(show.id);
+
+  setMovie(show.movie);
+  setTheatre(show.theatre);
+  setDate(show.date);
+  setTime(show.time);
+  setPrice(show.price);
+};
+
+
+// =========================
+// UPDATE SHOW
+// =========================
+
+const updateShow = () => {
+
+  if (
+    !movie ||
+    !theatre ||
+    !date ||
+    !time ||
+    !price
+  ) {
+    alert("Please fill all show details");
+    return;
+  }
+
+  setShows((previousShows) =>
+    previousShows.map((show) =>
+      show.id === editingId
+        ? {
+            ...show,
+            movie,
+            theatre,
+            date,
+            time,
+            price: Number(price)
+          }
+        : show
+    )
+  );
+
+  setEditingId(null);
+
+  setMovie("");
+  setTheatre("");
+  setDate("");
+  setTime("");
+  setPrice("");
+
+  alert("Show updated successfully!");
+};
+
+
+// =========================
+// CANCEL EDIT
+// =========================
+
+const cancelEdit = () => {
+
+  setEditingId(null);
+
+  setMovie("");
+  setTheatre("");
+  setDate("");
+  setTime("");
+  setPrice("");
+
+};
   // =========================
   // DELETE SHOW
   // =========================
@@ -610,12 +683,36 @@ const ManageShows = () => {
           </div>
 
 
-          <button
-            className="add-movie-btn"
-            onClick={addShow}
-          >
-            + Add Show
-          </button>
+          {editingId ? (
+
+  <div className="show-edit-buttons">
+
+    <button
+      className="add-movie-btn"
+      onClick={updateShow}
+    >
+      ✓ Save Changes
+    </button>
+
+    <button
+      className="cancel-edit-btn"
+      onClick={cancelEdit}
+    >
+      Cancel
+    </button>
+
+  </div>
+
+) : (
+
+  <button
+    className="add-movie-btn"
+    onClick={addShow}
+  >
+    + Add Show
+  </button>
+
+)}
 
         </div>
 
@@ -680,14 +777,27 @@ const ManageShows = () => {
                   </p>
 
 
-                  <button
-                    className="delete-movie-btn"
-                    onClick={() =>
-                      deleteShow(show.id)
-                    }
-                  >
-                    Delete Show
-                  </button>
+               <div className="show-action-buttons">
+
+    <button
+    className="edit-show-btn"
+    onClick={() =>
+      editShow(show)
+    }
+  >
+    ✏️ Edit Show
+  </button>
+
+  <button
+    className="delete-movie-btn"
+    onClick={() =>
+      deleteShow(show.id)
+    }
+  >
+    🗑 Delete Show
+  </button>
+
+</div>
 
                 </div>
 
