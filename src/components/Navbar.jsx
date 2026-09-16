@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const isLoggedIn =
-    localStorage.getItem("currentUser") !== null;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loadUser = () => {
+      const savedUser = localStorage.getItem("currentUser");
+
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      } else {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
+
+    setUser(null);
+
     alert("Logged out successfully");
-    navigate("/login");
+
+    navigate("/");
   };
 
   return (
@@ -36,16 +53,15 @@ const Navbar = () => {
           Movies
         </Link>
 
-        {isLoggedIn && (
-          <Link to="/booking-history">
-            Booking History
-          </Link>
-        )}
 
-        {isLoggedIn ? (
+        {user && (
           <>
+            <Link to="/booking-history">
+              Booking History
+            </Link>
+
             <Link to="/profile">
-              Profile
+              👤 {user.name || "Profile"}
             </Link>
 
             <button
@@ -55,7 +71,10 @@ const Navbar = () => {
               Logout
             </button>
           </>
-        ) : (
+        )}
+
+
+        {!user && (
           <>
             <Link to="/login">
               Login
@@ -66,7 +85,11 @@ const Navbar = () => {
             </Link>
           </>
         )}
-
+        {!user && (
+          <Link to="/admin-login">
+            Admin
+          </Link>
+        )}
       </div>
 
     </nav>

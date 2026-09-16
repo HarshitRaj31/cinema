@@ -1,0 +1,158 @@
+/* ================================
+   ADMIN NAVBAR
+================================ */
+
+.admin-navbar {
+  width: 100%;
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 45px;
+
+  box-sizing: border-box;
+
+  background: #0b0708;
+
+  border-bottom: 1px solid #2a1919;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+/* ================================
+   LOGO
+================================ */
+
+.admin-navbar-logo {
+  color: #f3ead9;
+
+  text-decoration: none;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-navbar-logo span {
+  color: #e6362f;
+
+  font-size: 11px;
+
+  padding: 4px 7px;
+
+  border: 1px solid #e6362f;
+
+  border-radius: 4px;
+
+  letter-spacing: 1px;
+}
+
+
+/* ================================
+   LINKS
+================================ */
+
+.admin-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.admin-navbar-links a {
+  color: #c9b8ac;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.admin-navbar-links a:hover {
+  color: #e6362f;
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+.admin-logout {
+  padding: 9px 17px;
+
+  border: 1px solid #e6362f;
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #e6362f;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.admin-logout:hover {
+  background: #e6362f;
+  color: white;
+
+  box-shadow:
+    0 5px 18px rgba(230, 54, 47, 0.25);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  .admin-navbar {
+    padding: 15px 20px;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .admin-navbar-links {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 15px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .admin-navbar-logo {
+    font-size: 22px;
+  }
+
+  .admin-navbar-links {
+    gap: 10px;
+  }
+
+  .admin-navbar-links a {
+    font-size: 12px;
+  }
+
+}

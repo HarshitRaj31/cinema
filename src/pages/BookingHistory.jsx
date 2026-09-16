@@ -1,46 +1,116 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./BookingHistory.css";
 
 const BookingHistory = () => {
+
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
 
+
   // =========================
-  // LOAD BOOKINGS
+  // LOAD CURRENT USER
   // =========================
 
   useEffect(() => {
-    const loadBookings = () => {
-      const savedBookings =
-        JSON.parse(localStorage.getItem("bookings")) || [];
 
-      setBookings(savedBookings);
+    const savedUser =
+      localStorage.getItem("currentUser");
+
+    if (!savedUser) {
+      navigate("/login");
+      return;
+    }
+
+    const currentUser =
+      JSON.parse(savedUser);
+
+    setUser(currentUser);
+
+
+    // =========================
+    // LOAD USER BOOKINGS
+    // =========================
+
+    const loadBookings = () => {
+
+      const savedBookings =
+        JSON.parse(
+          localStorage.getItem("bookings")
+        ) || [];
+
+
+      // SHOW ONLY CURRENT USER BOOKINGS
+
+      const userBookings =
+        savedBookings.filter(
+          (booking) =>
+            booking.userId === currentUser.id ||
+            booking.userEmail === currentUser.email
+        );
+
+      setBookings(userBookings);
     };
+
 
     loadBookings();
 
-    // Update if localStorage changes
-    window.addEventListener("storage", loadBookings);
+    window.addEventListener(
+      "storage",
+      loadBookings
+    );
 
     return () => {
-      window.removeEventListener("storage", loadBookings);
+      window.removeEventListener(
+        "storage",
+        loadBookings
+      );
     };
-  }, []);
+
+  }, [navigate]);
 
 
   // =========================
-  // CLEAR ALL HISTORY
+  // CLEAR USER HISTORY
   // =========================
 
   const clearHistory = () => {
+
     if (
-      window.confirm(
-        "Are you sure you want to clear all booking history?"
+      !window.confirm(
+        "Are you sure you want to clear your booking history?"
       )
     ) {
-      localStorage.removeItem("bookings");
-      setBookings([]);
+      return;
     }
+
+
+    const savedBookings =
+      JSON.parse(
+        localStorage.getItem("bookings")
+      ) || [];
+
+
+    // KEEP OTHER USERS' BOOKINGS
+
+    const remainingBookings =
+      savedBookings.filter(
+        (booking) =>
+          booking.userId !== user.id &&
+          booking.userEmail !== user.email
+      );
+
+
+    localStorage.setItem(
+      "bookings",
+      JSON.stringify(remainingBookings)
+    );
+
+
+    setBookings([]);
+
   };
 
 
@@ -58,7 +128,9 @@ const BookingHistory = () => {
         <h1>BOOKING HISTORY</h1>
 
         <span>
-          View all your movie bookings
+          {user
+            ? `${user.name}'s movie bookings`
+            : "View all your movie bookings"}
         </span>
 
       </section>
@@ -95,7 +167,9 @@ const BookingHistory = () => {
 
                 <div
                   className="history-card"
-                  key={booking.bookingID || index}
+                  key={
+                    booking.bookingID || index
+                  }
                 >
 
                   {/* =========================
@@ -272,7 +346,8 @@ const BookingHistory = () => {
                     </span>
 
                     <strong>
-                      {booking.paymentMethod || "Card"}
+                      {booking.paymentMethod ||
+                        "Card"}
                     </strong>
 
                   </div>
@@ -316,7 +391,9 @@ const BookingHistory = () => {
           </div>
 
         )}
-
+<Link to='/'>
+        <button className="add-movie-btn">Return To Home</button>
+      </Link>
       </section>
 
     </div>

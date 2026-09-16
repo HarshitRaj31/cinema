@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
+import AdminNavbar from "./AdminNavbar";
 import './AdminDashboard.css'
 const AdminDashboard = () => {
      const [movies, setMovies] = useState([]);
@@ -33,6 +34,7 @@ const AdminDashboard = () => {
   return (
     <div className='admin-page'>
         <section className='admin-hero'>
+          <AdminNavbar/>
             <p>CINEBOX ADMIN</p>
             <h1>ADMIN DASHBOARD</h1>
             <span> Manage your cinema booking system</span>

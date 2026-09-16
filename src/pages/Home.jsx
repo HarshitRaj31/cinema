@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from "../components/Navbar";
 import './Home.css'
 
 const Home = () => {
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("currentUser")
+
+    if (savedUser) {
+      setUser(JSON.parse(savedUser))
+    } else {
+      setUser(null)
+    }
+  }, [])
+
+
   return (
     <>
       <div className="home">
-
+       <Navbar/>
         {/* HERO SECTION */}
         <section className="hero">
           <div className="hero-content">
@@ -31,13 +46,12 @@ const Home = () => {
                 <button>🎟️ Explore Movies</button>
               </Link>
 
-              <Link to="/login" className="secondary-btn">
-                <button>Sign In</button>
-              </Link>
 
-              <Link to="/admin-login" className="secondary-btn">
-                <button>Admin</button>
-              </Link>
+              {/* SHOW SIGN IN ONLY WHEN USER IS NOT LOGGED IN */}
+
+              
+
+              
 
             </div>
           </div>

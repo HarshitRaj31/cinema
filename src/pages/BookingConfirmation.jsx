@@ -29,7 +29,6 @@ const BookingConfirmation = () => {
   // =========================
 
   useEffect(() => {
-
     if (
       !movieId ||
       !theater ||
@@ -40,7 +39,6 @@ const BookingConfirmation = () => {
       alert("Booking information is missing");
       navigate("/movies");
     }
-
   }, [
     movieId,
     theater,
@@ -67,14 +65,53 @@ const BookingConfirmation = () => {
       return;
     }
 
+
+    // =========================
+    // GET CURRENT USER
+    // =========================
+
+    const currentUser =
+      JSON.parse(
+        localStorage.getItem("currentUser")
+      );
+
+
+    // =========================
+    // CHECK LOGIN
+    // =========================
+
+    if (!currentUser) {
+      alert("Please login before booking.");
+      navigate("/login");
+      return;
+    }
+
+
+    // =========================
+    // BOOKING OBJECT
+    // =========================
+
     const booking = {
       bookingID,
+
+      // USER INFORMATION
+      userId: currentUser.id,
+      userName: currentUser.name,
+      userEmail: currentUser.email,
+
+      // MOVIE INFORMATION
       movieId,
       movieTitle,
+
+      // SHOW INFORMATION
       date,
       time,
       theater,
+
+      // SEAT INFORMATION
       seats,
+
+      // PAYMENT INFORMATION
       paymentMethod,
       ticketPrice,
       totalPrice
@@ -82,7 +119,7 @@ const BookingConfirmation = () => {
 
 
     // =========================
-    // SAVE BOOKING
+    // GET EXISTING BOOKINGS
     // =========================
 
     const existingBookings =
@@ -91,9 +128,14 @@ const BookingConfirmation = () => {
       ) || [];
 
 
+    // =========================
+    // CHECK DUPLICATE BOOKING
+    // =========================
+
     const alreadySaved =
       existingBookings.some(
         (item) =>
+          item.userId === currentUser.id &&
           item.movieId === movieId &&
           item.theater?.name === theater.name &&
           item.date === date &&
@@ -102,6 +144,10 @@ const BookingConfirmation = () => {
             JSON.stringify(seats)
       );
 
+
+    // =========================
+    // SAVE BOOKING
+    // =========================
 
     if (!alreadySaved) {
 
@@ -163,7 +209,8 @@ const BookingConfirmation = () => {
     seats,
     paymentMethod,
     ticketPrice,
-    totalPrice
+    totalPrice,
+    navigate
   ]);
 
 
@@ -302,7 +349,6 @@ const BookingConfirmation = () => {
       }
     );
 
-
     doc.setFontSize(10);
 
     doc.setFont(
@@ -360,7 +406,6 @@ const BookingConfirmation = () => {
       "F"
     );
 
-
     doc.setTextColor(
       152,
       133,
@@ -379,7 +424,6 @@ const BookingConfirmation = () => {
       32,
       82
     );
-
 
     doc.setTextColor(
       243,
@@ -455,7 +499,6 @@ const BookingConfirmation = () => {
       112
     );
 
-
     doc.setTextColor(
       243,
       234,
@@ -469,13 +512,11 @@ const BookingConfirmation = () => {
       "bold"
     );
 
-
     const movieLines =
       doc.splitTextToSize(
         movieName,
         160
       );
-
 
     doc.text(
       movieLines,
@@ -526,7 +567,6 @@ const BookingConfirmation = () => {
       149
     );
 
-
     doc.setTextColor(
       243,
       234,
@@ -557,7 +597,6 @@ const BookingConfirmation = () => {
       32,
       169
     );
-
 
     doc.setTextColor(
       243,
@@ -590,7 +629,6 @@ const BookingConfirmation = () => {
       149
     );
 
-
     doc.setTextColor(
       243,
       234,
@@ -621,7 +659,6 @@ const BookingConfirmation = () => {
       115,
       169
     );
-
 
     doc.setTextColor(
       243,
@@ -655,7 +692,6 @@ const BookingConfirmation = () => {
       190
     );
 
-
     doc.setTextColor(
       209,
       163,
@@ -683,7 +719,6 @@ const BookingConfirmation = () => {
     let seatX = 25;
     let seatY = 207;
 
-
     seats.forEach(
       (seat, index) => {
 
@@ -697,13 +732,11 @@ const BookingConfirmation = () => {
 
         }
 
-
         doc.setFillColor(
           230,
           54,
           47
         );
-
 
         doc.roundedRect(
           seatX,
@@ -714,7 +747,6 @@ const BookingConfirmation = () => {
           3,
           "F"
         );
-
 
         doc.setTextColor(
           255,
@@ -729,7 +761,6 @@ const BookingConfirmation = () => {
           "bold"
         );
 
-
         doc.text(
           seat,
           seatX + 12.5,
@@ -738,7 +769,6 @@ const BookingConfirmation = () => {
             align: "center"
           }
         );
-
 
         seatX += 29;
 
@@ -756,7 +786,6 @@ const BookingConfirmation = () => {
         seatY + 23
       );
 
-
     doc.setDrawColor(
       209,
       163,
@@ -769,7 +798,6 @@ const BookingConfirmation = () => {
       185,
       paymentY
     );
-
 
     doc.setTextColor(
       209,
@@ -807,7 +835,6 @@ const BookingConfirmation = () => {
       paymentY + 22
     );
 
-
     doc.setTextColor(
       243,
       234,
@@ -839,7 +866,6 @@ const BookingConfirmation = () => {
       paymentY + 22
     );
 
-
     doc.setTextColor(
       243,
       234,
@@ -862,7 +888,6 @@ const BookingConfirmation = () => {
     const totalY =
       paymentY + 28;
 
-
     doc.setFillColor(
       230,
       54,
@@ -879,7 +904,6 @@ const BookingConfirmation = () => {
       "F"
     );
 
-
     doc.setTextColor(
       255,
       255,
@@ -893,7 +917,6 @@ const BookingConfirmation = () => {
       32,
       totalY + 11
     );
-
 
     doc.setFontSize(16);
 
@@ -1206,7 +1229,6 @@ const BookingConfirmation = () => {
       </section>
 
     </div>
-
   );
 };
 

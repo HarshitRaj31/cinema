@@ -22,6 +22,7 @@ import ManageTheatres from './admin/ManageTheatres'
 import Profile from './pages/Profile'
 import AdminLogin from './admin/AdminLogin'
 import Navbar from './components/Navbar'
+import AdminNavbar from './admin/AdminNavbar'
 import './App.css'
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
           <Route path="/admin/seats"element={<ManageSeats />}/>
           <Route path='/admin-login' element={<AdminLogin/>}/>
           <Route path='/navbar' element={<Navbar/>}/>
-
+           <Route path='/admin-navbar' element={<AdminNavbar/>}/>
       </Routes>
     </>
   )
